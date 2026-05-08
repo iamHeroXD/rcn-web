@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
 const testimonials = [
@@ -60,20 +59,15 @@ export function TestimonialsSection() {
         {/* Left Fade */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-rcn-black to-transparent z-10" />
         
-        {/* Scrolling Track */}
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            ease: "linear",
-            duration: 30,
-            repeat: Infinity,
-          }}
-          className="flex gap-6 w-max px-6"
+        {/* Scrolling Track - CSS animation for much better performance */}
+        <div
+          className="flex gap-6 w-max px-6 hover:[animation-play-state:paused]"
+          style={{ animation: "marquee 30s linear infinite" }}
         >
           {items.map((t, idx) => (
             <div
               key={idx}
-              className="w-[350px] shrink-0 glassmorphism rounded-xl p-6 border border-white/10"
+              className="w-[350px] shrink-0 glassmorphism rounded-xl p-6 border border-white/10 hover:border-rcn-purple/30 transition-all"
             >
               <div className="flex items-center gap-4 mb-4">
                 <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full border border-rcn-purple/50" />
@@ -87,10 +81,10 @@ export function TestimonialsSection() {
                   <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                 ))}
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed">"{t.content}"</p>
+              <p className="text-gray-300 text-sm leading-relaxed">&quot;{t.content}&quot;</p>
             </div>
           ))}
-        </motion.div>
+        </div>
         
         {/* Right Fade */}
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-rcn-black to-transparent z-10" />

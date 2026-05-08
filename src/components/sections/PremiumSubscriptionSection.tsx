@@ -1,9 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { useState } from "react";
+import { PremiumModal } from "@/components/ui/PremiumModal";
 
 const plans = [
   {
@@ -33,7 +35,7 @@ const plans = [
     ],
     buttonText: "Subscribe Pro",
     variant: "glow" as const,
-    glowColor: "border-rcn-purple shadow-[0_0_30px_rgba(139,92,246,0.3)]",
+    glowColor: "border-rcn-purple",
     popular: true
   },
   {
@@ -50,12 +52,9 @@ const plans = [
     ],
     buttonText: "Subscribe Elite",
     variant: "outline" as const,
-    glowColor: "border-rcn-cyan/50 hover:border-rcn-cyan shadow-[0_0_15px_rgba(6,182,212,0.2)]"
+    glowColor: "border-rcn-cyan/50 hover:border-rcn-cyan"
   }
 ];
-
-import { useState } from "react";
-import { PremiumModal } from "@/components/ui/PremiumModal";
 
 export function PremiumSubscriptionSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,6 +71,22 @@ export function PremiumSubscriptionSection() {
 
   return (
     <section id="premium" className="py-24 relative">
+      {/* Floating particles background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-rcn-purple/30 rounded-full"
+            style={{
+              animation: `particleFloat ${5 + i}s ease-in-out infinite`,
+              animationDelay: `${i * 0.8}s`,
+              left: `${10 + i * 15}%`,
+              top: `${20 + (i % 3) * 25}%`,
+            }}
+          />
+        ))}
+      </div>
+
       <PremiumModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
@@ -99,8 +114,8 @@ export function PremiumSubscriptionSection() {
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                  <span className="bg-rcn-purple text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider box-glow">
-                    Most Popular
+                  <span className="bg-rcn-purple text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider box-glow flex items-center gap-1">
+                    <Sparkles className="w-3 h-3" /> Most Popular
                   </span>
                 </div>
               )}
@@ -108,6 +123,7 @@ export function PremiumSubscriptionSection() {
               <Card 
                 tiltOnHover 
                 className={`h-full flex flex-col p-8 ${plan.glowColor} ${plan.popular ? 'bg-rcn-purple/5' : ''}`}
+                style={plan.popular ? { animation: "borderGlow 3s ease-in-out infinite" } : undefined}
               >
                 <div className="mb-6">
                   <h3 className="text-xl font-semibold text-white mb-2">{plan.name}</h3>

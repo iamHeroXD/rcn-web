@@ -1,5 +1,6 @@
-import { Globe, MessageSquare } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -7,9 +8,9 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-rcn-purple to-rcn-cyan flex items-center justify-center">
-                <span className="text-white text-sm font-black">R</span>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-lg overflow-hidden border border-white/10 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                <Image src="/logo.jpeg" alt="RCN" width={40} height={40} className="object-cover w-full h-full" />
               </div>
               <span className="text-2xl font-bold text-white tracking-tighter">RCN Prime</span>
             </div>

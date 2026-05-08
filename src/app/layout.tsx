@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { FloatingDiscordWidget } from "@/components/ui/FloatingDiscordWidget";
 
 const inter = Inter({
@@ -21,8 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased dark`}>
-      <body className="min-h-full flex flex-col font-sans cursor-none">
-        <CustomCursor />
+      <body className="min-h-full flex flex-col font-sans">
         <FloatingDiscordWidget />
         {children}
       </body>

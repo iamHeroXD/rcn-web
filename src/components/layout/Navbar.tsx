@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import Image from "next/image";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,11 +38,11 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <a href="#" className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-rcn-purple to-rcn-cyan flex items-center justify-center">
-                <span className="text-white text-sm font-black">R</span>
+            <a href="#" className="text-2xl font-bold tracking-tighter text-white flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg overflow-hidden border border-white/10 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                <Image src="/logo.jpeg" alt="RCN" width={36} height={36} className="object-cover w-full h-full" />
               </div>
-              RCN
+              <span>RCN</span>
             </a>
           </div>
           

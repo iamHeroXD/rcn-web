@@ -1,30 +1,78 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { NetworkSphere } from "@/components/3d/NetworkSphere";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
-import { Suspense } from "react";
+import Image from "next/image";
+
+function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
+  return (
+    <div
+      className="absolute rounded-full bg-rcn-purple/30"
+      style={{
+        left: x,
+        top: y,
+        width: size,
+        height: size,
+        animation: `particleFloat ${4 + delay}s ease-in-out infinite`,
+        animationDelay: `${delay}s`,
+      }}
+    />
+  );
+}
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* 3D Background */}
-      <div className="absolute inset-0 z-0 opacity-60">
-        <Suspense fallback={<div className="w-full h-full bg-rcn-black" />}>
-          <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-            <NetworkSphere />
-          </Canvas>
-        </Suspense>
+      {/* CSS animated background instead of Three.js */}
+      <div className="absolute inset-0 z-0">
+        {/* Gradient mesh */}
+        <div className="absolute inset-0 gradient-mesh" />
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 grid-bg opacity-40" />
+        
+        {/* Floating particles */}
+        <FloatingParticle delay={0} x="10%" y="20%" size={4} />
+        <FloatingParticle delay={1.5} x="85%" y="15%" size={3} />
+        <FloatingParticle delay={0.8} x="70%" y="60%" size={5} />
+        <FloatingParticle delay={2} x="25%" y="75%" size={3} />
+        <FloatingParticle delay={1} x="50%" y="30%" size={4} />
+        <FloatingParticle delay={2.5} x="15%" y="55%" size={6} />
+        <FloatingParticle delay={0.5} x="90%" y="45%" size={3} />
+        <FloatingParticle delay={1.8} x="40%" y="85%" size={4} />
+        <FloatingParticle delay={3} x="60%" y="10%" size={5} />
+        <FloatingParticle delay={0.3} x="35%" y="40%" size={3} />
+
+        {/* Large ambient glows */}
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-rcn-purple/5 blur-[150px] rounded-full" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-rcn-cyan/5 blur-[120px] rounded-full" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        {/* Floating logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 2.2 }}
+          className="mb-8"
+        >
+          <div className="relative inline-block">
+            {/* Glow ring */}
+            <div className="absolute -inset-3 rounded-2xl bg-gradient-to-r from-rcn-purple/20 to-rcn-cyan/20 blur-lg" />
+            <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-white/10 shadow-[0_0_40px_rgba(139,92,246,0.3)]"
+              style={{ animation: "float 6s ease-in-out infinite" }}
+            >
+              <Image src="/logo.jpeg" alt="RCN" width={80} height={80} className="object-cover w-full h-full" priority />
+            </div>
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2.5 }} // delay after loading screen
+          transition={{ duration: 0.8, delay: 2.5 }}
           className="mb-6"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glassmorphism mb-8 border-rcn-cyan/30 border">

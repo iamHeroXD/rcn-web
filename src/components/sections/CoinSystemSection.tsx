@@ -1,71 +1,130 @@
 "use client";
 
-import { useRef, useState, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Cylinder, Environment, Float, Sparkles } from "@react-three/drei";
 import { motion } from "framer-motion";
-import * as THREE from "three";
 import { Card } from "@/components/ui/Card";
-import { Zap, ArrowUpRight, Crown } from "lucide-react";
+import { Zap, ArrowUpRight, Crown, TrendingUp, Coins } from "lucide-react";
 
-function Coin3D({ position, delay, isMain = false }: { position: [number, number, number], delay: number, isMain?: boolean }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const [hovered, setHover] = useState(false);
-  const [clicked, setClicked] = useState(false);
+// CSS-only animated coin component
+function AnimatedCoin() {
+  return (
+    <div className="relative flex items-center justify-center">
+      {/* Outer glow ring */}
+      <div className="absolute w-56 h-56 rounded-full border border-yellow-500/10" style={{ animation: "pulseRing 3s ease-out infinite" }} />
+      <div className="absolute w-56 h-56 rounded-full border border-yellow-400/5" style={{ animation: "pulseRing 3s ease-out infinite 1s" }} />
+      
+      {/* Orbit ring */}
+      <div className="absolute w-64 h-64">
+        <div className="absolute inset-0 rounded-full border border-yellow-500/10 border-dashed" style={{ animation: "coinSpin 20s linear infinite" }} />
+        {/* Orbiting dots */}
+        <div className="absolute w-2 h-2 bg-yellow-400 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.8)]" style={{ animation: "orbit 6s linear infinite", top: "50%", left: "50%" }} />
+        <div className="absolute w-1.5 h-1.5 bg-yellow-300 rounded-full shadow-[0_0_8px_rgba(234,179,8,0.6)]" style={{ animation: "orbit 8s linear infinite reverse", top: "50%", left: "50%" }} />
+      </div>
 
-  useFrame((state) => {
-    if (meshRef.current) {
-      // Base rotation + interactive spin on hover or click
-      const spinSpeed = clicked ? 0.5 : (hovered ? 0.1 : 0.02);
-      meshRef.current.rotation.y += spinSpeed;
-      meshRef.current.rotation.x = Math.PI / 2 + Math.sin(state.clock.elapsedTime + delay) * 0.15;
-      
-      // Floating motion
-      const floatOffset = isMain ? 0 : Math.sin(state.clock.elapsedTime * 2 + delay) * 0.15;
-      meshRef.current.position.y = position[1] + floatOffset;
-      
-      // Smooth scale on hover/click
-      const targetScale = clicked ? 1.4 : (hovered ? 1.2 : 1);
-      meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
-      
-      if (clicked && meshRef.current.scale.x > 1.35) {
-        setClicked(false); // Reset click animation
-      }
-    }
-  });
+      {/* Main coin */}
+      <div className="relative" style={{ perspective: "800px" }}>
+        <div
+          className="w-40 h-40 rounded-full relative"
+          style={{ 
+            animation: "coinSpin 4s ease-in-out infinite",
+            transformStyle: "preserve-3d",
+          }}
+        >
+          {/* Front face */}
+          <div 
+            className="absolute inset-0 rounded-full flex items-center justify-center"
+            style={{
+              background: "linear-gradient(135deg, #fbbf24 0%, #eab308 30%, #ca8a04 60%, #fbbf24 100%)",
+              backfaceVisibility: "hidden",
+              boxShadow: "inset 0 2px 20px rgba(0,0,0,0.3), 0 0 40px rgba(234,179,8,0.3)",
+            }}
+          >
+            <div className="w-[120px] h-[120px] rounded-full border-4 border-yellow-600/40 flex items-center justify-center">
+              <div className="text-center">
+                <Coins className="w-10 h-10 text-yellow-900/70 mx-auto mb-1" />
+                <span className="text-yellow-900/80 font-black text-lg tracking-widest">RCN</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Back face */}
+          <div 
+            className="absolute inset-0 rounded-full flex items-center justify-center"
+            style={{
+              background: "linear-gradient(135deg, #ca8a04 0%, #eab308 40%, #fbbf24 80%, #ca8a04 100%)",
+              backfaceVisibility: "hidden",
+              transform: "rotateY(180deg)",
+              boxShadow: "inset 0 2px 20px rgba(0,0,0,0.3), 0 0 40px rgba(234,179,8,0.3)",
+            }}
+          >
+            <div className="w-[120px] h-[120px] rounded-full border-4 border-yellow-600/40 flex items-center justify-center">
+              <span className="text-yellow-900/80 font-black text-4xl">⚡</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Ambient glow */}
+        <div className="absolute inset-0 rounded-full" style={{ animation: "coinGlow 2s ease-in-out infinite" }} />
+      </div>
+
+      {/* Sparkle particles */}
+      {[...Array(8)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute w-1 h-1 bg-yellow-400 rounded-full"
+          style={{
+            animation: `sparkle ${2 + i * 0.3}s ease-in-out infinite`,
+            animationDelay: `${i * 0.4}s`,
+            top: `${20 + Math.sin(i * 0.8) * 35}%`,
+            left: `${20 + Math.cos(i * 0.8) * 35}%`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+// Live transaction ticker
+function TransactionTicker() {
+  const transactions = [
+    { user: "AlexDev", action: "earned", amount: "+500", type: "Activity Bonus" },
+    { user: "Sarah_C", action: "spent", amount: "-200", type: "Profile Boost" },
+    { user: "0xMarcus", action: "earned", amount: "+100", type: "Referral" },
+    { user: "Elena_M", action: "earned", amount: "+50", type: "Daily Login" },
+  ];
 
   return (
-    <Float speed={isMain ? 0 : 2} rotationIntensity={0.5} floatIntensity={isMain ? 0 : 1}>
-      <Cylinder 
-        ref={meshRef} 
-        args={[1.5, 1.5, 0.25, 64]} 
-        position={position} 
-        rotation={[Math.PI / 2, 0, 0]}
-        onPointerOver={() => setHover(true)}
-        onPointerOut={() => setHover(false)}
-        onClick={() => setClicked(true)}
-      >
-        <meshStandardMaterial
-          color={hovered || clicked ? "#fde047" : "#eab308"}
-          metalness={1}
-          roughness={0.15}
-          emissive="#ca8a04"
-          emissiveIntensity={hovered || clicked ? 0.6 : 0.2}
-        />
-        <Cylinder args={[1.2, 1.2, 0.26, 64]} position={[0, 0, 0]}>
-          <meshStandardMaterial
-            color="#ca8a04"
-            metalness={1}
-            roughness={0.3}
-          />
-        </Cylinder>
-        
-        {/* Particles specifically around the main coin when hovered */}
-        {isMain && hovered && (
-          <Sparkles count={50} scale={5} size={2} speed={0.4} opacity={1} color="#fde047" />
-        )}
-      </Cylinder>
-    </Float>
+    <div className="terminal-frame mt-8">
+      <div className="terminal-header">
+        <div className="terminal-dot bg-red-500" />
+        <div className="terminal-dot bg-yellow-500" />
+        <div className="terminal-dot bg-green-500" />
+        <span className="text-xs text-gray-500 ml-3 font-mono">rcn-economy-live</span>
+      </div>
+      <div className="terminal-body space-y-2 max-h-[180px] overflow-hidden">
+        {transactions.map((tx, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.2 }}
+            className="flex items-center gap-3 text-xs"
+          >
+            <span className="text-gray-500">[{String(idx + 1).padStart(2, '0')}]</span>
+            <span className="text-rcn-cyan">@{tx.user}</span>
+            <span className="text-gray-500">{tx.action}</span>
+            <span className={tx.amount.startsWith('+') ? 'text-green-400 font-bold' : 'text-red-400 font-bold'}>
+              {tx.amount} RCN
+            </span>
+            <span className="text-gray-600">— {tx.type}</span>
+          </motion.div>
+        ))}
+        <div className="flex items-center gap-1 text-gray-600 text-xs mt-2">
+          <span className="animate-cursor-blink">█</span>
+          <span>Listening for transactions...</span>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -156,27 +215,26 @@ export function CoinSystemSection() {
                   <span className="text-sm font-medium">Priority Hiring</span>
                 </Card>
                 <Card className="p-4 flex items-center gap-3 bg-white/5 border-yellow-500/20">
-                  <span className="text-yellow-400 text-xl font-bold">💎</span>
+                  <TrendingUp className="text-yellow-400 w-5 h-5" />
                   <span className="text-sm font-medium">Exclusive Perks</span>
                 </Card>
               </div>
             </motion.div>
           </div>
 
-          {/* Right: 3D Coins Stack */}
-          <div className="h-[500px] w-full relative">
-            <Canvas camera={{ position: [0, 2, 8], fov: 45 }}>
-              <ambientLight intensity={0.5} />
-              <directionalLight position={[10, 10, 5]} intensity={1} />
-              <pointLight position={[-5, 5, 5]} color="#ca8a04" intensity={2} />
-              <Environment preset="city" />
-              
-              <Coin3D position={[0, -1, 0]} delay={0} />
-              <Coin3D position={[0, 0, 0]} delay={0.2} />
-              <Coin3D position={[0, 1, 0]} delay={0.4} />
-              <Coin3D position={[0, 2, 0]} delay={0.6} isMain={true} />
-            </Canvas>
-          </div>
+          {/* Right: CSS Coin Animation + Terminal Ticker */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center"
+          >
+            <div className="h-[300px] w-full flex items-center justify-center">
+              <AnimatedCoin />
+            </div>
+            <TransactionTicker />
+          </motion.div>
         </div>
       </div>
     </section>
