@@ -46,7 +46,7 @@ export function FloatingDiscordWidget() {
               <p className="text-sm text-gray-300 mb-4">
                 Get access to exclusive developer jobs, premium bot commands, and a community of 50,000+ builders.
               </p>
-              <Button href="https://discord.gg/8gYnm86Nym" target="_blank" rel="noopener noreferrer" variant="glow" className="w-full bg-[#5865F2] hover:bg-[#4752C4] shadow-none border-none">
+              <Button href="https://discord.gg/8gYnm86Nym" variant="glow" className="w-full bg-[#5865F2] hover:bg-[#4752C4] shadow-none border-none">
                 Accept Invite
               </Button>
             </div>

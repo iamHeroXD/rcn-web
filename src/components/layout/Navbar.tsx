@@ -60,7 +60,7 @@ export function Navbar() {
           </div>
           
           <div className="hidden md:block">
-            <Button href="https://discord.gg/8gYnm86Nym" variant="glow" target="_blank" rel="noopener noreferrer">Join Discord</Button>
+            <Button href="https://discord.gg/8gYnm86Nym" variant="glow">Join Discord</Button>
           </div>
 
           <div className="md:hidden">
@@ -94,7 +94,7 @@ export function Navbar() {
                 </a>
               ))}
               <div className="pt-4 pb-2 px-3">
-                <Button href="https://discord.gg/8gYnm86Nym" variant="glow" className="w-full" target="_blank" rel="noopener noreferrer">Join Discord</Button>
+                <Button href="https://discord.gg/8gYnm86Nym" variant="glow" className="w-full">Join Discord</Button>
               </div>
             </div>
           </motion.div>

@@ -28,7 +28,7 @@ export function ContactSection() {
                   <h4 className="text-white font-semibold">Discord Support</h4>
                   <p className="text-gray-400 text-sm">Fastest response time</p>
                 </div>
-                <Button href="https://discord.gg/8gYnm86Nym" variant="outline" size="sm" className="ml-auto border-[#5865F2] text-[#5865F2] hover:bg-[#5865F2] hover:text-white" target="_blank" rel="noopener noreferrer">
+                <Button href="https://discord.gg/8gYnm86Nym" variant="outline" size="sm" className="ml-auto border-[#5865F2] text-[#5865F2] hover:bg-[#5865F2] hover:text-white">
                   Join Server
                 </Button>
               </div>

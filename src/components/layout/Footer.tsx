@@ -48,7 +48,7 @@ export function Footer() {
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} RCN Prime. All rights reserved.
           </p>
-          <Button href="https://discord.gg/8gYnm86Nym" target="_blank" rel="noopener noreferrer" variant="outline" size="sm" className="text-xs">
+          <Button href="https://discord.gg/8gYnm86Nym" variant="outline" size="sm" className="text-xs">
             Join Discord Server
           </Button>
         </div>
