@@ -13,7 +13,7 @@ function AnimatedCoin() {
       <div className="absolute w-56 h-56 rounded-full border border-yellow-400/5" style={{ animation: "pulseRing 3s ease-out infinite 1s" }} />
       
       {/* Orbit ring */}
-      <div className="absolute w-64 h-64">
+      <div className="absolute w-48 h-48 md:w-64 md:h-64">
         <div className="absolute inset-0 rounded-full border border-yellow-500/10 border-dashed" style={{ animation: "coinSpin 20s linear infinite" }} />
         {/* Orbiting dots */}
         <div className="absolute w-2 h-2 bg-yellow-400 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.8)]" style={{ animation: "orbit 6s linear infinite", top: "50%", left: "50%" }} />
@@ -23,7 +23,7 @@ function AnimatedCoin() {
       {/* Main coin */}
       <div className="relative" style={{ perspective: "800px" }}>
         <div
-          className="w-40 h-40 rounded-full relative"
+          className="w-28 h-28 md:w-40 md:h-40 rounded-full relative"
           style={{ 
             animation: "coinSpin 4s ease-in-out infinite",
             transformStyle: "preserve-3d",
@@ -38,10 +38,10 @@ function AnimatedCoin() {
               boxShadow: "inset 0 2px 20px rgba(0,0,0,0.3), 0 0 40px rgba(234,179,8,0.3)",
             }}
           >
-            <div className="w-[120px] h-[120px] rounded-full border-4 border-yellow-600/40 flex items-center justify-center">
+            <div className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full border-4 border-yellow-600/40 flex items-center justify-center">
               <div className="text-center">
-                <Coins className="w-10 h-10 text-yellow-900/70 mx-auto mb-1" />
-                <span className="text-yellow-900/80 font-black text-lg tracking-widest">RCN</span>
+                <Coins className="w-6 h-6 md:w-10 md:h-10 text-yellow-900/70 mx-auto mb-0.5 md:mb-1" />
+                <span className="text-yellow-900/80 font-black text-xs md:text-lg tracking-widest">RCN</span>
               </div>
             </div>
           </div>
@@ -56,8 +56,8 @@ function AnimatedCoin() {
               boxShadow: "inset 0 2px 20px rgba(0,0,0,0.3), 0 0 40px rgba(234,179,8,0.3)",
             }}
           >
-            <div className="w-[120px] h-[120px] rounded-full border-4 border-yellow-600/40 flex items-center justify-center">
-              <span className="text-yellow-900/80 font-black text-4xl">⚡</span>
+            <div className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] rounded-full border-4 border-yellow-600/40 flex items-center justify-center">
+              <span className="text-yellow-900/80 font-black text-2xl md:text-4xl">⚡</span>
             </div>
           </div>
         </div>
