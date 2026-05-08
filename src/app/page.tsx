@@ -7,9 +7,8 @@ import { CoinSystemSection } from "@/components/sections/CoinSystemSection";
 import { PremiumSubscriptionSection } from "@/components/sections/PremiumSubscriptionSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { ReviewsCollageSection } from "@/components/sections/ReviewsCollageSection";
 import { FAQSection } from "@/components/sections/FAQSection";
-import { SupportDonationSection } from "@/components/sections/SupportDonationSection";
-import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Home() {
   return (
@@ -23,6 +22,7 @@ export default function Home() {
         <PremiumSubscriptionSection />
         <ServicesSection />
         <TestimonialsSection />
+        <ReviewsCollageSection />
         <FAQSection />
         <SupportDonationSection />
         <ContactSection />

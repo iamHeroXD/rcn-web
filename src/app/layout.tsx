@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "RCN | Real Connection Network",
-  description: "Find Jobs. Hire Talent. Build Faster. The ultimate Discord-based job marketplace and developer hiring system.",
+  title: "RCN Prime | The Digital Operating System for Discord",
+  description: "RCN Prime is a secure automation and digital infrastructure system designed to power Discord communities with smart bot automation, a virtual economy, and a security-first backend.",
 };
 
 export default function RootLayout({

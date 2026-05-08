@@ -54,9 +54,29 @@ const plans = [
   }
 ];
 
+import { useState } from "react";
+import { PremiumModal } from "@/components/ui/PremiumModal";
+
 export function PremiumSubscriptionSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState("");
+
+  const handleSubscribe = (planName: string) => {
+    if (planName === "Basic") {
+      window.open("https://discord.gg/8gYnm86Nym", "_blank");
+      return;
+    }
+    setSelectedPlan(planName);
+    setIsModalOpen(true);
+  };
+
   return (
     <section id="premium" className="py-24 relative">
+      <PremiumModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        planName={selectedPlan} 
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -106,7 +126,7 @@ export function PremiumSubscriptionSection() {
                   </ul>
                 </div>
                 
-                <Button href="#contact" variant={plan.variant} className="w-full">
+                <Button onClick={() => handleSubscribe(plan.name)} variant={plan.variant} className="w-full">
                   {plan.buttonText}
                 </Button>
               </Card>

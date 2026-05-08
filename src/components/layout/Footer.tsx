@@ -11,16 +11,13 @@ export function Footer() {
               <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-rcn-purple to-rcn-cyan flex items-center justify-center">
                 <span className="text-white text-sm font-black">R</span>
               </div>
-              <span className="text-2xl font-bold text-white tracking-tighter">RCN</span>
+              <span className="text-2xl font-bold text-white tracking-tighter">RCN Prime</span>
             </div>
             <p className="text-gray-400 mb-6 max-w-sm">
-              The ultimate Discord-based job marketplace and developer hiring system. Find Jobs. Hire Talent. Build Faster.
+              The Digital Operating System for Discord servers. Automate your community, build virtual economies, and scale securely.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-rcn-cyan transition-colors">
-                <Globe size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://discord.gg/8gYnm86Nym" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <MessageSquare size={20} />
               </a>
             </div>
@@ -41,17 +38,17 @@ export function Footer() {
             <ul className="space-y-2">
               <li><a href="#faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
               <li><a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+              <li><a href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Real Connection Network. All rights reserved.
+            &copy; {new Date().getFullYear()} RCN Prime. All rights reserved.
           </p>
-          <Button variant="outline" size="sm" className="text-xs">
+          <Button href="https://discord.gg/8gYnm86Nym" target="_blank" rel="noopener noreferrer" variant="outline" size="sm" className="text-xs">
             Join Discord Server
           </Button>
         </div>

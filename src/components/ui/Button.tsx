@@ -39,19 +39,40 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     const MotionButton = motion.button;
+    const MotionLink = motion.a;
 
     if (href) {
-      return (
-        <Link href={href} passHref legacyBehavior>
-          <MotionButton
+      // Internal links vs External links
+      const isExternal = href.startsWith('http');
+      
+      if (isExternal) {
+        return (
+          <MotionLink
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className={cn(baseStyles, variants[variant], sizes[size], className)}
-            ref={ref}
+            ref={ref as any}
             {...props as any}
           >
             {buttonContent}
-          </MotionButton>
+          </MotionLink>
+        );
+      }
+
+      return (
+        <Link href={href} passHref legacyBehavior>
+          <MotionLink
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={cn(baseStyles, variants[variant], sizes[size], className)}
+            ref={ref as any}
+            {...props as any}
+          >
+            {buttonContent}
+          </MotionLink>
         </Link>
       );
     }

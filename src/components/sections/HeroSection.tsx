@@ -29,15 +29,18 @@ export function HeroSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glassmorphism mb-8 border-rcn-cyan/30 border">
             <span className="w-2 h-2 rounded-full bg-rcn-cyan animate-pulse"></span>
-            <span className="text-sm font-medium text-rcn-cyan">RCN v2.0 is live</span>
+            <span className="text-sm font-medium text-rcn-cyan">RCN Prime is live</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-4 text-glow">
-            RCN — Real <br />
+            RCN Prime — The <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-rcn-purple to-rcn-cyan">
-              Connection Network
+              Digital OS for Discord
             </span>
           </h1>
+          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mt-6">
+            Secure automation, virtual economy systems, and robust infrastructure designed to scale your community effortlessly.
+          </p>
         </motion.div>
 
         <motion.div
@@ -48,13 +51,13 @@ export function HeroSection() {
         >
           <TypeAnimation
             sequence={[
-              "Find Jobs.",
+              "Automate Communities.",
               1000,
-              "Hire Talent.",
+              "Build Virtual Economies.",
               1000,
-              "Build Faster.",
+              "Smart Infrastructure.",
               1000,
-              "Automate Everything.",
+              "Security First.",
               1000,
             ]}
             wrapper="span"
@@ -69,7 +72,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 3.5 }}
           className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto"
         >
-          <Button href="#" variant="glow" size="lg" className="w-full sm:w-auto">
+          <Button href="https://discord.gg/8gYnm86Nym" variant="glow" size="lg" className="w-full sm:w-auto">
             Join RCN Server
           </Button>
           <Button href="#bot" variant="glass" size="lg" className="w-full sm:w-auto">

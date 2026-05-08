@@ -22,6 +22,10 @@ const faqItems = [
   {
     title: "What is the RCN Bot?",
     content: "The RCN Bot is a custom Discord bot that automates the ecosystem. It handles job posting, filtering, notifications, coin balances, and premium subscription access directly within Discord."
+  },
+  {
+    title: "What happened to Hustlehub?",
+    content: "Hustlehub has officially rebranded to RCN (Real Connection Network) as part of our transition into a full digital operating system for Discord. All previous accounts, coins, and data have been safely migrated to RCN Prime."
   }
 ];
 
