@@ -3,7 +3,6 @@
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
-import Image from "next/image";
 
 function FloatingParticle({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) {
   return (
@@ -51,24 +50,6 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        {/* Floating logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 2.2 }}
-          className="mb-8"
-        >
-          <div className="relative inline-block">
-            {/* Glow ring */}
-            <div className="absolute -inset-3 rounded-2xl bg-gradient-to-r from-rcn-purple/20 to-rcn-cyan/20 blur-lg" />
-            <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-white/10 shadow-[0_0_40px_rgba(139,92,246,0.3)]"
-              style={{ animation: "float 6s ease-in-out infinite" }}
-            >
-              <Image src="/logo.jpeg" alt="RCN" width={80} height={80} className="object-cover w-full h-full" priority />
-            </div>
-          </div>
-        </motion.div>
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

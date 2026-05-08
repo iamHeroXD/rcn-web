@@ -51,8 +51,8 @@ function useCountUp(target: number, duration: number = 2000) {
 }
 
 const stats = [
-  { icon: <Users className="w-5 h-5" />, value: 50000, suffix: "+", label: "Members", color: "text-rcn-purple" },
-  { icon: <Briefcase className="w-5 h-5" />, value: 10000, suffix: "+", label: "Jobs Posted", color: "text-rcn-cyan" },
+  { icon: <Users className="w-5 h-5" />, value: 100, suffix: "+", label: "Members", color: "text-rcn-purple" },
+  { icon: <Briefcase className="w-5 h-5" />, value: 20, suffix: "+", label: "Jobs Posted", color: "text-rcn-cyan" },
   { icon: <Clock className="w-5 h-5" />, value: 99.9, suffix: "%", label: "Uptime", color: "text-green-400", isDecimal: true },
   { icon: <Shield className="w-5 h-5" />, value: 24, suffix: "/7", label: "Support", color: "text-yellow-400" },
 ];
